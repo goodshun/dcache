@@ -8,7 +8,7 @@
     user.dir  – 用户当前工作目录
     java.io.tmpdir – 默认临时文件路径 
     -->
-	<diskStore path="java.io.tmpdir/ehcache-temp" />
+	<diskStore path="user.dir/ehcache-temp" />
 
 	<!-- 默认缓存策略：当ehcache找不到定义的缓存时，则使用这个缓存策略 -->
 	<defaultCache
@@ -27,8 +27,8 @@
 			name="user-cache"
 			maxElementsInMemory="10000"
 			eternal="false"
-			timeToIdleSeconds="15"
-			timeToLiveSeconds="20"
+			timeToIdleSeconds="1500"
+			timeToLiveSeconds="20000"
 			overflowToDisk="true"
 			maxElementsOnDisk="10000000"
 			diskPersistent="true"

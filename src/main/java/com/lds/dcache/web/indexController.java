@@ -1,8 +1,10 @@
 package com.lds.dcache.web;
 
 import com.lds.dcache.entity.User;
+import com.lds.dcache.service.EhcacheService;
 import com.lds.dcache.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class indexController {
     @Autowired
     RedisService redisService;
+
+    @Autowired
+    EhcacheService ehcacheService;
+
     @RequestMapping(value = { "/*", "/" }, method = RequestMethod.GET)
     public Object index() throws Exception {
         return "this is Redis Sample!";
@@ -29,5 +35,10 @@ public class indexController {
         return "this is Redis Sample!";
     }
 
+    @RequestMapping(value = { "/getstring/{id}"}, method = RequestMethod.GET)
+    public Object getstring(@PathVariable(name = "id") long id) throws Exception {
+
+        return ehcacheService.findUserById(id);
+    }
 
 }
